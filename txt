@@ -1,4 +1,4 @@
-deepfake-edge-agent/
+project/
 │
 ├── README.md
 │
