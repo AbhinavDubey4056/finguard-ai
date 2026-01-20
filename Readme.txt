@@ -1,258 +1,246 @@
-🛡️ Finguard AI - Deepfake Edge Agent
-Autonomous Edge AI System for Deepfake Detection & Forensic Analysis
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap');
+* { font-family: 'Urbanist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+</style>
 
-Finguard AI is a secure, edge-optimized system designed to detect deepfakes in video and audio media. It combines a high-performance FastAPI backend for inference with a comprehensive Streamlit dashboard for forensic analysis, user management, and live security verification.
+# 🛡️ Finguard AI – Deepfake Edge Agent
 
-🚀 Key Features
-Multi-Modal Analysis:
+### Autonomous Edge AI System for Deepfake Detection & Forensic Analysis
 
-Video: Frame-by-frame analysis using Xception-based deep learning models, temporal aggregation, and face alignment.
+---
 
-Audio: Heuristic and signal-based analysis to detect synthetic voice artifacts.
+## 📌 Overview
 
-Forensic Dashboard (UI):
+**Finguard AI** is a secure, edge-optimized deepfake detection platform built for high-stakes identity verification and forensic analysis. It performs **real-time and batch deepfake detection** on video and audio media using a **FastAPI inference backend** and a **Streamlit forensic dashboard**, enabling secure authentication, audit logging, and live liveness verification—without relying on continuous cloud inference.
 
-Secure login portal with role-based access and cryptographic security integraion for admin login.
+---
 
-Upload interface for batch media analysis.
+## 🚀 Key Capabilities
 
-Detailed "Explanation Engine" reports (Verdict, Risk Level, Confidence Score).
+### 🔎 Multi‑Modal Deepfake Detection
 
-🔴 Live Verification Portal:
+* **Video Analysis**: Frame-by-frame inference using **Xception-based CNNs**, face alignment, and temporal score aggregation for robust video-level verdicts.
+* **Audio Analysis**: Signal- and heuristic-based detection to identify synthetic voice artifacts and tampering.
 
-Real-Time Biometric Broadcast: WebRTC-based secure streaming for live agent authentication(main integration will be with the tie ups)
+### 🧪 Forensic Dashboard (Streamlit)
 
-Challenge-Response Protocol: Generates dynamic Session Codes that the user must speak to verify liveness.
+* **Secure Role-Based Login** with cryptographic authentication for administrators.
+* **Batch Media Uploads** for offline and online analysis.
+* **Explainability Engine** generating human-readable reports including **Verdict**, **Risk Level**, and **Confidence Score**.
 
-Environment Fingerprinting: Detects the use of automation tools (e.g., Selenium/Webdrivers,Rooted Device, VM, Spyware) and validates hardware concurrency cores to prevent spoofing.
+### 🔴 Live Verification Portal
 
-Autonomous Agent:
+* **Real-Time Biometric Streaming**: Secure WebRTC-based video and audio streaming for live agent verification.
+* **Challenge–Response Liveness Check**: Dynamically generated **Session Codes** that must be spoken aloud to verify presence.
+* **Environment Fingerprinting**: Detection of automation and spoofing indicators including **WebDrivers, rooted devices, virtual machines, spyware**, and abnormal hardware concurrency cores.
 
-Decision Engine: Automatically determines verdicts (REAL vs. DEEPFAKE) based on confidence thresholds.
+### 🤖 Autonomous Agent Logic
 
-Integrity Checks: Verifies input media integrity before processing.
+* **Decision Engine**: Produces final verdicts (**REAL / DEEPFAKE**) based on confidence thresholds and policy rules.
+* **Integrity Validation**: Verifies media authenticity and integrity before inference.
 
+---
+
+## 🗂️ Project Structure
+
+```
 Project/
 ├── app/
-│   ├── main.py                # FastAPI Backend Entry Point
-│   ├── config.py              # System Configuration
+│   ├── main.py                 # FastAPI backend entry point
+│   ├── config.py               # System configuration
 │   └── ui/
-│       ├── app.py             # Streamlit Frontend Dashboard
-│       └── serviceAccountKey.json  # Firebase Credentials (Required)
-├── agent/                     # Autonomous Logic
-│   ├── decision_engine.py     # Verdict Logic
-│   ├── explanation_engine.py  # Report Generation
-│   └── policy_rules.py        # Threshold Policies
-├── inference/                 # AI Inference Engine
-│   ├── deepfake_infer.py      # Video Model Inference
-│   ├── audio_infer.py         # Audio Analysis Logic
-│   ├── model_loader.py        # PyTorch Model Management
-│   └── temporal_aggregation.py # Frame-to-Video Score Aggregation
-├── preprocessing/             # Media Pipeline
-│   ├── video_loader.py        # Video I/O
-│   ├── frame_sampler.py       # Frame Extraction
-│   ├── face_detector.py       # Face Detection (OpenCV/MTCNN)
-│   └── normalization.py       # Image Normalization
+│       ├── app.py              # Streamlit forensic dashboard
+│       └── serviceAccountKey.json  # Firebase credentials (required)
+├── agent/
+│   ├── decision_engine.py      # Autonomous verdict logic
+│   ├── explanation_engine.py   # Explainable AI reports
+│   └── policy_rules.py         # Confidence & risk thresholds
+├── inference/
+│   ├── deepfake_infer.py       # Video model inference
+│   ├── audio_infer.py          # Audio analysis
+│   ├── model_loader.py         # PyTorch model loader
+│   └── temporal_aggregation.py # Frame-to-video score aggregation
+├── preprocessing/
+│   ├── video_loader.py         # Media I/O
+│   ├── frame_sampler.py        # Frame extraction
+│   ├── face_detector.py        # Face detection (OpenCV / MTCNN)
+│   └── normalization.py        # Input normalization
 ├── security/
-│   ├── integrity_check.py     # File Security Verification
-│   └── otp_utils.py           # Authentication Utilities
-├── app_logging/               # System Logs
-│   └── event_logger.py
-└── requirements.txt           # Python Dependencies
+│   ├── integrity_check.py      # Media integrity verification
+│   └── otp_utils.py            # OTP & cryptographic utilities
+├── app_logging/
+│   └── event_logger.py         # System & forensic logs
+└── requirements.txt            # Python dependencies
+```
 
-🛠️ Installation & Setup
-Prerequisites
+---
 
-Python 3.8+
+## 🛠️ Installation & Setup
 
-Google Firebase Project (for Firestore)
+### ✅ Prerequisites
 
-1. Install Dependencies
+* Python **3.8+**
+* Google **Firebase Project** (Firestore enabled)
 
-Bash
+### 1️⃣ Install Dependencies
+
+```bash
 pip install -r requirements.txt
-Note: For the Live Portal, ensure streamlit-webrtc and streamlit-js-eval are installed.
+```
 
-2. Configure Firebase
+> **Note:** For live verification, ensure `streamlit-webrtc` and `streamlit-js-eval` are installed.
 
-To use the Dashboard and Audit Logging, you must add your Firebase credentials:
+### 2️⃣ Firebase Configuration
 
-Generate a serviceAccountKey.json from your Firebase Console.
+To enable user management and audit logging:
 
-Place the file in Project/app/ui/serviceAccountKey.json.
+1. Generate a `serviceAccountKey.json` from the **Firebase Console**.
+2. Place it at:
 
-3. Model Weights
+```
+app/ui/serviceAccountKey.json
+```
 
-Ensure your deep learning model weights (e.g., deepfake_model.pth) are placed in the models/ directory.
+### 3️⃣ Model Weights
 
-🚦 Usage
-The system requires running the Backend (FastAPI) and Frontend (Streamlit) simultaneously.
+Place your trained model weights (e.g., `deepfake_model.pth`) in the `models/` directory before running inference.
 
-Step 1: Start the Backend API
+---
 
-This handles the heavy lifting of video processing and inference.
+## ▶️ Running the System
 
-Bash
-# Run from the root directory
+The platform requires **two parallel services**.
+
+### ▶ Backend – FastAPI
+
+Handles preprocessing, inference, and agent decisions.
+
+```bash
 python -m app.main
-Server will start at: http://localhost:8000
+```
 
-Step 2: Start the Forensic Dashboard
+📍 Runs at: **[http://localhost:8000](http://localhost:8000)**
 
-This launches the user interface.
+### ▶ Frontend – Streamlit Dashboard
 
-Bash
+Launches the forensic and live verification UI.
+
+```bash
 streamlit run app/ui/app.py
-UI will open at: http://localhost:8501
+```
 
-🔴 Live Verification Demo
-The Live Mode is designed for secure, real-time agent verification.
+📍 Runs at: **[http://localhost:8501](http://localhost:8501)**
 
-Launch the Dashboard and log in (Default: admin / 1234).
+---
 
-Select "Live" from the navigation dropdown in the top right.
+## 🔴 Live Verification Workflow
 
-Grant Permissions: Allow the browser to access your webcam and microphone.
+1. Log in to the dashboard (default: `admin / 1234`).
+2. Navigate to **Live Mode**.
+3. Grant webcam & microphone permissions.
 
-Verification Steps:
+**Verification Layers**:
 
-Biometric Broadcast: The WebRTC stream analyzes video/audio artifacts in real-time.
+* **Biometric Stream**: Real-time video & audio analysis.
+* **Session Code Liveness Test**: User must verbally repeat the displayed alphanumeric code.
+* **Security Status Scan**:
 
-Session Code: A unique alphanumeric code (e.g., A7X92B) is displayed. The agent must speak this code into the camera.
+  * Hardware core validation
+  * WebDriver / bot detection
+  * Browser fingerprint verification
 
-Security Scan: Click the "Security Status" tab to view forensic metadata:
+---
 
-Hardware Cores: Validates device capabilities.
+## 🔌 API Endpoints
 
-Webdriver Active: Checks for automated bot control.
+| Method | Endpoint         | Description                                |
+| ------ | ---------------- | ------------------------------------------ |
+| GET    | `/health`        | System health & runtime status             |
+| POST   | `/analyze/video` | Video deepfake analysis (.mp4, .avi, .mov) |
+| POST   | `/analyze/audio` | Audio authenticity analysis (.wav, .mp3)   |
 
-Browser String: Verifies client identity.
+---
 
-🔌 API Endpoints
-The FastAPI backend exposes the following endpoints:
+## 🗄️ Firestore Database Architecture
 
-Method	Endpoint	Description
-GET	/health	Check system status and runtime mode.
-POST	/analyze/video	Upload .mp4, .avi, .mov. Returns Deepfake Score & Verdict.
-POST	/analyze/audio	Upload .wav, .mp3. Returns Audio Authenticity Score
+### 🆔 Secure Identity Code (SIC)
 
-🗄️ Database Architecture (Cloud Firestore)
+* **Purpose**: Short cryptographic identifier for authorized users.
+* **Format**: 6‑character alphanumeric (`A–Z, 0–9`).
 
-The system connects to Firestore using the serviceAccountKey.json credentials. It operates in "Live Sync" mode, meaning changes made in the dashboard (like adding a user) are immediately reflected in the cloud database.
+```json
+{ "Name": "John Doe", "SIC": "A7X92B" }
+```
 
-1. 🆔 SIC Code (Secure Identity Code)
+### 👔 Employee Records
 
-The SIC Code is a unique identifier assigned to authorized "Users" (Admins/Personnel) in the system.
+* Corporate employee tracking using standardized IDs.
 
-Generation Logic: It is a randomly generated 6-character alphanumeric string (A-Z, 0-9) created by the generate_sic() function.
+```json
+{ "Name": "Jane Smith", "ID": "EMP402" }
+```
 
-Storage: Stored in the users collection.
+### 🔐 Encrypted Secrets Vault
 
-Schema:
+* Stores sensitive values (masked in UI, stored securely).
 
-JSON
+```json
+{ "Key": "API_MASTER_KEY", "Value": "******" }
+```
+
+### 📝 Audit Reports (Forensic Trail)
+
+* Immutable logs generated after every analysis.
+
+```json
 {
-  "Name": "John Doe",
-  "SIC": "A7X92B"  // Auto-generated unique key
-}
-
-
-
-Purpose: Acts as a secure, short-code credential for verifying authorized personnel access.
-
-2. 👔 Employee Records
-
-Different from "Users," employees are tracked with a standard corporate ID format.
-
-Generation Logic: Uses generate_emp_id() to create a format like EMP + 3 random digits (e.g., EMP123).
-
-Storage: Stored in the employees collection.
-
-Schema:
-
-JSON
-{
-  "Name": "Jane Smith",
-  "ID": "EMP402"
-}
-
-
-
-3. 🔐 Encrypted Secrets Vault
-
-A secure storage collection for sensitive keys or passwords.
-
-Feature: The UI treats the Value input as a password field (masked), though it is currently stored as a string in the database.
-
-Storage: Stored in the secrets collection.
-
-Schema:
-
-JSON
-{
-  "Key": "API_MASTER_KEY",
-  "Value": "******" // Sensitive data
-}
-
-
-4. 📝 Audit Logs (Forensic Trail)
-
-This is the most critical database feature for the Deepfake Agent. Every time a video or audio file is analyzed, an immutable report is automatically written to the database.
-
-Generation: Triggered by the process_analysis function after inference.
-
-Storage: Stored in the audit_reports collection.
-
-Schema:
-
-JSON
-{
-  "ReportID": "REP-XYZ123",        // Unique Report ID
+  "ReportID": "REP-XYZ123",
   "Timestamp": "2025-10-27 14:30:00",
   "Filename": "suspect_video.mp4",
   "MediaType": "Video",
-  "Verdict": "DEEPFAKE",           // Result from Agent
-  "Confidence": "98.5%",           // Model Probability
+  "Verdict": "DEEPFAKE",
+  "Confidence": "98.5%",
   "RiskLevel": "CRITICAL",
-  "Details": "Face artifacts detected..."
+  "Details": "Face artifacts detected"
 }
+```
 
+---
 
+## ⚡ Live Synchronization
 
-⚡ Live Synchronization Features
+* **Real-Time Updates** using Firestore streams.
+* **Optimized State Caching** with Streamlit `session_state` to reduce database reads.
 
-Streamed Updates: The dashboard uses db.collection(...).stream() to fetch the latest data, ensuring that if an admin adds a user from one device, it appears instantly on others.
+---
 
-State Management: The app uses Streamlit's session_state to cache this data temporarily to prevent excessive database reads during the session.
+## 🔐 Cryptographic Security Architecture
 
+### 🔑 SHA‑256 Token Hashing
 
-🔐 Cryptographic Security Architecture
-Finguard AI employs a Zero-Trust Authentication approach, ensuring that sensitive access tokens are never stored in plain text.
+* OTPs are **never stored in plaintext**.
+* One‑way hashing ensures breach‑resistant authentication.
 
-1. SHA-256 Hashing Protocol
-Located in: utils/otp_utils.py
-
-The system utilizes industry-standard SHA-256 (Secure Hash Algorithm 256-bit) to secure ephemeral authentication tokens.
-
-One-Way Encryption: One-Time Passwords (OTPs) generated for session validation are immediately hashed before verification. The raw OTP is never stored in the database, preventing reverse-engineering even in the event of a data breach.
-
-Implementation:
-
-Python
-# OTPs are converted to a fixed 64-character hexadecimal signature
+```python
 hashlib.sha256(otp.encode()).hexdigest()
-2. Ephemeral Session Expiration
-Located in: utils/otp_utils.py
+```
 
-To prevent "Replay Attacks" (where an attacker intercepts a valid code and tries to use it later), all cryptographic tokens have a strict time-to-live (TTL).
+### ⏱️ Ephemeral Session Expiry
 
-Expiry Window: 400 seconds (6.6 minutes).
+* Strict **400‑second TTL** for all session tokens.
+* Automatic rejection of expired or replayed credentials.
 
-Automatic Invalidation: The is_expired() utility validates the token's timestamp against the system clock at the moment of access. Any token older than the window is mathematically rejected, regardless of its correctness.
+### 🧾 Media Integrity Verification
 
-3. Secure Input Integrity
-Located in: security/integrity_check.py
+* Cryptographic checksums validate files before AI inference.
+* Prevents tampering during upload or transit.
 
-Beyond login, cryptographic security extends to the media pipeline.
+---
 
-File Hashing: Every uploaded video/audio file undergoes a cryptographic checksum verification (Input Integrity Check) to ensure the data has not been tampered with during transit before the AI processing begins.
+## 🧠 Built for High‑Trust Environments
+
+Finguard AI is designed for **banks, fintechs, KYC providers, and digital forensics teams** requiring real‑time, explainable, and tamper‑resistant deepfake detection at the edge.
+
+---
+
+### ⭐ If you find this project useful, consider starring the repository.
